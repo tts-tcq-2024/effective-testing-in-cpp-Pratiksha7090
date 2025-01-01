@@ -24,8 +24,16 @@ void alertInCelcius(float farenheit) {
 }
 
 int main() {
-    alertInCelcius(400.5);
-    alertInCelcius(303.6);
+    alertFailureCount = 0;
+
+    // Test case 1: High temperature (should fail)
+    alertInCelcius(400.5); // 400.5°F → ~204.7°C
+    assert(alertFailureCount == 1 && "Test failed: Failure count should be 1 but is not!");
+
+    // Test case 2: Another high temperature (should fail)
+    alertInCelcius(303.6); // 303.6°F → ~150.9°C
+    assert(alertFailureCount == 2 && "Test failed: Failure count should be 2 but is not!");
+    
     std::cout << alertFailureCount << " alerts failed.\n";
     std::cout << "All is well (maybe!)\n";
     return 0;
